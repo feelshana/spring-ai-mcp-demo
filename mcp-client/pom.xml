@@ -3,11 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.ahucoding.rocket</groupId>
-        <artifactId>spring-ai-mcp-demo</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/>
     </parent>
+
     <artifactId>mcp-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mcp-client</name>
@@ -16,7 +17,6 @@
     <properties>
         <java.version>17</java.version>
         <spring.ai.alibaba>1.0.0-M5.1</spring.ai.alibaba>
-        <spring-ai-mcp.version>0.6.0</spring-ai-mcp.version>
     </properties>
     <dependencies>
         <dependency>
@@ -47,38 +47,19 @@
             <version>${spring.ai.alibaba}</version>
         </dependency>
 
+
+        <!--   在 1.0.0-M5 版本中 spring-ai-mcp属于试验特性，和后续 1.0.0-M6 版本中的 groupId不同   -->
         <dependency>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-ai-mcp</artifactId>
-            <version>0.3.0</version>
+            <version>0.6.0</version>
         </dependency>
-        <!--        <dependency>-->
-<!--            <groupId>io.modelcontextprotocol.sdk</groupId>-->
-<!--            <artifactId>mcp</artifactId>-->
-<!--            <version>0.8.0-SNAPSHOT</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+
 
     </dependencies>
 
 
     <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone-local</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
 
         <repository>
             <id>spring-milestones</id>

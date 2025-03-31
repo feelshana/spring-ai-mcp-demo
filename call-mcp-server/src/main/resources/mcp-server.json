@@ -15,13 +15,6 @@
         "--db-path",
         "D:\\work-space-study\\spring-ai-mcp-demo\\mcp-client\\src\\main\\resources\\test.db"
       ]
-    },
-    "fetch": {
-      "command": "D:\\Program Files\\python3.12.3\\Scripts\\uvx.exe",
-      "args": [
-        "mcp-server-fetch"
-      ]
     }
   }
-}
 }
