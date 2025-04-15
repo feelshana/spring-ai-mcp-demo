@@ -1,5 +1,6 @@
 package com.ahucoding.rocket.mcpserver.cfg;
 
+import com.ahucoding.rocket.mcpserver.service.AllUserService;
 import com.ahucoding.rocket.mcpserver.service.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.server.McpServerFeatures;
@@ -8,6 +9,7 @@ import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -24,8 +26,12 @@ import java.util.function.Consumer;
 public class McpServerConfig implements WebMvcConfigurer {
 
     @Bean
-    public ToolCallbackProvider openLibraryTools(BookService bookService) {
-        return MethodToolCallbackProvider.builder().toolObjects(bookService).build();
+    public ToolCallbackProvider tools(BookService bookService,AllUserService allUserService) {
+        return MethodToolCallbackProvider.builder().toolObjects(allUserService).build();
+    }
+
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        configurer.setDefaultTimeout(300000); // 设置超时时间为5分钟
     }
 
     @Bean

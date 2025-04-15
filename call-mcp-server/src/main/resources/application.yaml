@@ -1,16 +1,28 @@
 server:
   port: 9999
+main:
+  banner-mode: off
+  web-application-type: none
 spring:
   ai:
     mcp:
       client:
         enabled: true
         name: call-mcp-server
+        request-timeout: 600s
 #        stdio:
 #          servers-configuration: classpath:mcp-server.json
         sse:
           connections:
             server1:
-              url: http://127.0.0.1:8080
+              url: http://localhost:8080
+        type: ASYNC
+        toolcallback:
+            enable: true
     dashscope:
-      api-key: {阿里云千问apiKey}
+      api-key: sk-8934f09eb44f4b16901e89b8c081db2b
+logging:
+  level:
+    root: INFO          # 全局日志级别（默认是 INFO）
+    org.springframework.web: DEBUG     # 指定包的日志级别（示例：Spring Web）
+    com.example.myapp: TRACE           # 自定义包的日志级别（示例：项目代码）

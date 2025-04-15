@@ -56,4 +56,13 @@ public class ChatController {
     }
 
 
+    @RequestMapping(value = "/generate", method = RequestMethod.GET)
+    public String generate(HttpServletResponse response, @RequestParam("id") String id, @RequestParam("prompt") String prompt) {
+        response.setCharacterEncoding("UTF-8");
+        var messageChatMemoryAdvisor = new MessageChatMemoryAdvisor(chatMemory, id, 10);
+        return this.chatClient.prompt(prompt)
+                .advisors(messageChatMemoryAdvisor).call().content();
+    }
+
+
 }

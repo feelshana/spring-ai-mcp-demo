@@ -1,10 +1,23 @@
 spring:
   application:
     name: mcp-server
+
+  datasource:
+    #本地数据库
+    url: jdbc:mysql://127.0.0.1:3306/chat_data?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
   ai:
     mcp:
       server:
         name: webmvc-mcp-server
         version: 1.0.0
-        type: SYNC
+        type: ASYNC
         sse-message-endpoint: /mcp/messages
+        enabled: true
+logging:
+  level:
+    root: INFO          # 全局日志级别（默认是 INFO）
+    org.springframework.web: DEBUG     # 指定包的日志级别（示例：Spring Web）
+    com.example.myapp: TRACE           # 自定义包的日志级别（示例：项目代码）

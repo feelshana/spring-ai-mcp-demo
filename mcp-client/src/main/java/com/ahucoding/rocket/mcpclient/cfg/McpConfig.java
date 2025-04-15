@@ -37,7 +37,7 @@ public class McpConfig {
     @Bean(destroyMethod = "close")
     public McpSyncClient mcpFileSysClient() {
         // 把这里的路径记得改为自己的真实路径
-        var stdioParams = ServerParameters.builder("D:\\software\\nodeJs\\npx.cmd")
+        var stdioParams = ServerParameters.builder("C:\\Program Files\\nodejs\\npx.cmd")
                 .args("-y", "@modelcontextprotocol/server-filesystem", "D:\\工作日志")
                 .build();
         var mcpClient = McpClient.using(new StdioClientTransport(stdioParams))

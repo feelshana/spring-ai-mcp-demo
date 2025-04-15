@@ -56,7 +56,7 @@
         messageInput.value = '';
 
         // 构建API URL
-        const apiUrl = new URL('http://localhost:9090/dashscope/chat-client/generate_stream');
+        const apiUrl = new URL('http://localhost:9090/dashscope/chat-client/generate');
         apiUrl.searchParams.append('id', '01');
         apiUrl.searchParams.append('prompt', message);
 

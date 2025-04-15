@@ -51,8 +51,8 @@ public class SampleClient {
 		System.out.println("Available Tools = " + toolsList);
 
 
-		CallToolResult books = client.callTool(new CallToolRequest("getBooks", Map.of("title", "Spring Framework")));
-		System.out.println("Books Response = " + books);
+		CallToolResult datas = client.callTool(new CallToolRequest("getUsers", Map.of("productName", "咪咕视频","month","202502")));
+		System.out.println("datas Response = " + datas);
 
 		// List and demonstrate resources
 		var resourcesList = client.listResources();

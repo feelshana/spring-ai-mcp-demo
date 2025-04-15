@@ -43,10 +43,11 @@ public class ChatController {
     public Flux<ChatResponse> generateStream(HttpServletResponse response, @RequestParam("id") String id, @RequestParam("prompt") String prompt) {
         response.setCharacterEncoding("UTF-8");
         var messageChatMemoryAdvisor = new MessageChatMemoryAdvisor(chatMemory, id, 10);
-        return this.chatClient.prompt(prompt)
+        Flux<ChatResponse> chatResponseFlux= this.chatClient.prompt(prompt)
                 .advisors(messageChatMemoryAdvisor)
                 .stream()
                 .chatResponse();
+        return chatResponseFlux;
     }
 
 
@@ -60,6 +61,15 @@ public class ChatController {
         var messageChatMemoryAdvisor = new MessageChatMemoryAdvisor(chatMemory, id, 10);
         return this.chatClient.prompt(prompt)
                 .advisors(messageChatMemoryAdvisor).stream().content();
+    }
+
+    @RequestMapping(value = "/generate", method = RequestMethod.GET)
+    public String generate(HttpServletResponse response, @RequestParam("id") String id, @RequestParam("prompt") String prompt) {
+        response.setCharacterEncoding("UTF-8");
+        var messageChatMemoryAdvisor = new MessageChatMemoryAdvisor(chatMemory, id, 10);
+        String content = this.chatClient.prompt(prompt)
+                .advisors(messageChatMemoryAdvisor).call().content();
+        return content;
     }
 
 
