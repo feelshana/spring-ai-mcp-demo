@@ -2,6 +2,7 @@ package com.ahucoding.rocket.mcpserver.cfg;
 
 import com.ahucoding.rocket.mcpserver.service.AllUserService;
 import com.ahucoding.rocket.mcpserver.service.BookService;
+import com.ahucoding.rocket.mcpserver.service.ContentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.spec.McpSchema;
@@ -26,8 +27,8 @@ import java.util.function.Consumer;
 public class McpServerConfig implements WebMvcConfigurer {
 
     @Bean
-    public ToolCallbackProvider tools(BookService bookService,AllUserService allUserService) {
-        return MethodToolCallbackProvider.builder().toolObjects(allUserService).build();
+    public ToolCallbackProvider tools(ContentService contentService,AllUserService allUserService) {
+        return MethodToolCallbackProvider.builder().toolObjects(contentService).build();
     }
 
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {

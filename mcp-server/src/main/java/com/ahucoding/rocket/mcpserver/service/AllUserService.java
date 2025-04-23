@@ -23,20 +23,20 @@ public class AllUserService  {
 
 
 
-	@Tool(description = "通过产品名，查询用户数据，如查询咪咕视频的活跃用户")
-	public List<AllUserDo> getUsers(
-			@ToolParam(description = "咪咕系的产品名称") String productName,
-			@ToolParam(description = "月份,未提及则为上月") String month
-	) {
-		QueryWrapper<AllUserDo> wrapper = new QueryWrapper<>();
-        if(StringUtils.isNotBlank(productName)){
-			wrapper.lambda().eq(AllUserDo::getProductName , productName);
-		}
-		if(StringUtils.isNotBlank(month)){
-			wrapper.lambda().eq(AllUserDo::getPeriodId , month);
-		}
-		return allUserMapper.selectList(wrapper);
+	@Tool(description = "查询咪咕相关产品的用户/活跃数据，提及年时，按月查询分析(data_type为month)，提及周/日时按日查询分析(data_type为day)")
+	public String getUserTableSql() {
 
+		return "CREATE TABLE `hhapp_2025_chatbi_active1_m` (\n" +
+				"  `product_name` varchar(12) DEFAULT NULL,\n" +
+				"  `province_name` varchar(12) DEFAULT NULL COMMENT '省份 全国',\n" +
+				"  `pid2_2022` varchar(50) DEFAULT NULL COMMENT '场景，包含：APP/SDK/全部/公网/家庭/小程序/政企/网页/H5',\n" +
+				"  `channel_level2` varchar(50) DEFAULT NULL COMMENT '渠道类型，包含：互联网公域流量运营/全部/公共池/复合型渠道/外部导流/广宣及MCN/省专渠道/终端预装/运营类渠道',\n" +
+				"  `active_users` bigint DEFAULT NULL COMMENT '活跃用户数',\n" +
+				"  `idx_yy_rate` varchar(10) DEFAULT NULL COMMENT '同比',\n" +
+				"  `idx_mm_rate` varchar(10) DEFAULT NULL COMMENT '环比',\n" +
+				"  `data_type` varchar(10) DEFAULT NULL COMMENT '日期类型,包含 day/month',\n" +
+				"  `period_id` varchar(50) DEFAULT NULL COMMENT '日期，格式为yyyyMM(当data_type为month),yyyyMMdd(当data_type为day)', \n" +
+				")";
 	}
 
 

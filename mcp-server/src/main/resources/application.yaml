@@ -2,11 +2,12 @@ spring:
   application:
     name: mcp-server
 
+
   datasource:
     #本地数据库
-    url: jdbc:mysql://127.0.0.1:3306/chat_data?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://10.194.146.74:3384/bvreport?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    username: bireadonly
+    password: Aw0e$%V9fT
     driver-class-name: com.mysql.cj.jdbc.Driver
   ai:
     mcp:
@@ -20,4 +21,9 @@ logging:
   level:
     root: INFO          # 全局日志级别（默认是 INFO）
     org.springframework.web: DEBUG     # 指定包的日志级别（示例：Spring Web）
-    com.example.myapp: TRACE           # 自定义包的日志级别（示例：项目代码）
+    com.example.myapp: TRACE
+    org.mybatis: DEBUG
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
