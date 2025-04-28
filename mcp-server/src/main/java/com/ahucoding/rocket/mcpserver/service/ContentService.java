@@ -166,7 +166,8 @@ public class ContentService {
                 " `per_duration`  COMMENT '人均播放时长(分钟)',\n" +
                 " `period_id` COMMENT '日期(yyyyMMdd)'\n" +
                 " )\n"+
-                "注意事项!：表中的scene_type_two/scene_type_three/scene_type_four/scene_type_five/con_class_1_name/play_type_name维度中，都包含了一条数据'全部'，查询维度具体值时需要将\" +\n" +
+                "###注意事项" +
+                "1：表中的scene_type_two/scene_type_three/scene_type_four/scene_type_five/con_class_1_name/play_type_name维度中，都包含了一条数据'全部'，查询维度具体值时需要将\" +\n" +
                 "            \"该维度赋值为具体值，其他未提及的维度条件必须赋值为'全部'，如查询大屏时，scene_type_two='大屏'，上述的各个维度字段='全部'；当不指定维度值时，所有维度值都需要赋值为全部，以便查出来为一条数据\"";
     }
 
@@ -225,8 +226,9 @@ public class ContentService {
 
 
 
-    @Tool(description = "执行sql进行查询,多个sql语句，通过分号进行分割")
-    public List<Map<String, Object>> executeQuery(String sql) {
+    @Tool(description = "执行SQL语句,返回结果数据集，注意:只能执行一个sql，多次执行需要多次调用")
+    public List<Map<String, Object>> executeQuery(String  sql) {
+
         // 校验SQL合法性
         validateSql(sql);
 

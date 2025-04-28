@@ -1,6 +1,9 @@
 spring:
   application:
     name: mcp-server
+  mvc:
+    async:
+      request-timeout: 90000
 
 
   datasource:
@@ -8,22 +11,33 @@ spring:
     url: jdbc:mysql://10.194.146.74:3384/bvreport?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
     username: bireadonly
     password: Aw0e$%V9fT
+
+#    url: jdbc:mysql://127.0.0.1:3306/chat_data?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
+#    username: root
+#    password: 123456
+    druid:
+      initial-size: 8 #连接池初始化大小
+      min-idle: 20 #最小空闲连接数
+      max-active: 30 #最大连接数
+
+
+
     driver-class-name: com.mysql.cj.jdbc.Driver
   ai:
     mcp:
       server:
         name: webmvc-mcp-server
         version: 1.0.0
-        type: ASYNC
-        sse-message-endpoint: /mcp/messages
-        enabled: true
+#        type: SYNC
+#        sse-message-endpoint: /mcp/messages
+#        enabled: true
 logging:
   level:
     root: INFO          # 全局日志级别（默认是 INFO）
-    org.springframework.web: DEBUG     # 指定包的日志级别（示例：Spring Web）
-    com.example.myapp: TRACE
-    org.mybatis: DEBUG
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    org.springframework.web: DEBUG     # 指定包的日志级别（示例：Spring Web）
+#    com.example.myapp: TRACE
+#    org.mybatis: DEBUG
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
